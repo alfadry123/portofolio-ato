@@ -1,0 +1,211 @@
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator {
+            width: 400px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .display {
+            width: 100%;
+            height: 80px;
+            background-color: #e0f7fa;
+            border: 1px solid #000;
+            border-radius: 5px;
+            text-align: right;
+            font-size: 36px;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
+            width: 100%;
+            height: 60px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+        .button-blue {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        .button-blue:hover {
+            background-color: #0056b3;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .menu {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .history {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+        .history .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .history .tabs .tab {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-bottom: 2px solid transparent;
+        }
+        .history .tabs .tab.active {
+            border-bottom: 2px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="header">
+            <div class="menu">&#9776;</div>
+            <div class="title">Standard</div>
+            <div class="menu">&#128465;</div>
+        </div>
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <div class="button" onclick="clearMemory()">MC</div>
+            <div class="button" onclick="recallMemory()">MR</div>
+            <div class="button" onclick="addToMemory()">M+</div>
+            <div class="button" onclick="subtractFromMemory()">M-</div>
+            <div class="button" onclick="storeMemory()">MS</div>
+            <div class="button" onclick="input('%')">%</div>
+            <div class="button" onclick="clearEntry()">CE</div>
+            <div class="button" onclick="clearDisplay()">C</div>
+            <div class="button" onclick="backspace()">&#9003;</div>
+            <div class="button" onclick="input('√')">&#8730;</div>
+            <div class="button" onclick="input('^2')">x²</div>
+            <div class="button" onclick="input('/')">÷</div>
+            <div class="button" onclick="input('7')">7</div>
+            <div class="button" onclick="input('8')">8</div>
+            <div class="button" onclick="input('9')">9</div>
+            <div class="button" onclick="input('*')">×</div>
+            <div class="button" onclick="input('4')">4</div>
+            <div class="button" onclick="input('5')">5</div>
+            <div class="button" onclick="input('6')">6</div>
+            <div class="button" onclick="input('-')">-</div>
+            <div class="button" onclick="input('1')">1</div>
+            <div class="button" onclick="input('2')">2</div>
+            <div class="button" onclick="input('3')">3</div>
+            <div class="button" onclick="input('+')">+</div>
+            <div class="button" onclick="toggleSign()">+/-</div>
+            <div class="button" onclick="input('0')">0</div>
+            <div class="button" onclick="input('.')">,</div>
+            <div class="button button-blue" onclick="calculate()">=</div>
+        </div>
+        <div class="history">
+            <div class="tabs">
+                <div class="tab active">History</div>
+                <div class="tab">Memory</div>
+            </div>
+            <div>There's no history yet.</div>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let memory = 0;
+
+        function input(value) {
+            if (display.innerText === '0') {
+                display.innerText = value;
+            } else {
+                display.innerText += value;
+            }
+        }
+
+        function clearDisplay() {
+            display.innerText = '0';
+        }
+
+        function clearEntry() {
+            display.innerText = display.innerText.slice(0, -1);
+            if (display.innerText === '') {
+                display.innerText = '0';
+            }
+        }
+
+        function backspace() {
+            display.innerText = display.innerText.slice(0, -1);
+            if (display.innerText === '') {
+                display.innerText = '0';
+            }
+        }
+
+        function calculate() {
+            try {
+                display.innerText = eval(display.innerText.replace('×', '*').replace('÷', '/').replace('√', 'Math.sqrt').replace('^2', '**2'));
+            } catch {
+                display.innerText = 'Error';
+            }
+        }
+
+        function toggleSign() {
+            if (display.innerText.charAt(0) === '-') {
+                display.innerText = display.innerText.slice(1);
+            } else {
+                display.innerText = '-' + display.innerText;
+            }
+        }
+
+        function clearMemory() {
+            memory = 0;
+        }
+
+        function recallMemory() {
+            display.innerText = memory;
+        }
+
+        function addToMemory() {
+            memory += parseFloat(display.innerText);
+        }
+
+        function subtractFromMemory() {
+            memory -= parseFloat(display.innerText);
+        }
+
+        function storeMemory() {
+            memory = parseFloat(display.innerText);
+        }
+    </script>
+</body>
+</html>

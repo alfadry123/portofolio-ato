@@ -1,0 +1,518 @@
+<!DOCTYPE 
+<html>
+ <head>
+  <title>
+   Dashboard
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 80px;
+            background-color: #fff;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .sidebar i {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #333;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header .search-bar input {
+            border: none;
+            outline: none;
+            margin-left: 10px;
+        }
+        .header .icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .icons i {
+            font-size: 20px;
+            margin-left: 20px;
+            color: #333;
+        }
+        .header .admin {
+            margin-left: 20px;
+            font-weight: 600;
+        }
+        .content {
+            display: flex;
+            margin-top: 20px;
+        }
+        .content .left {
+            flex: 2;
+            margin-right: 20px;
+        }
+        .content .right {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .content .right h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .content .right .message {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+        .content .right .message img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .content .right .message .text {
+            flex: 1;
+        }
+        .content .right .message .text h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .content .right .message .text p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            color: #666;
+        }
+        .content .right .message .date {
+            font-size: 12px;
+            color: #999;
+        }
+        .content .left .stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .content .left .stats div {
+            text-align: center;
+        }
+        .content .left .stats div h3 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .content .left .stats div p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            color: #666;
+        }
+        .content .left .projects {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .content .left .projects .project {
+            width: calc(33.333% - 20px);
+            background-color: #fff;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .content .left .projects .project h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .content .left .projects .project p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            color: #666;
+        }
+        .content .left .projects .project .progress {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .content .left .projects .project .progress-bar {
+            flex: 1;
+            height: 5px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            margin-right: 10px;
+            position: relative;
+        }
+        .content .left .projects .project .progress-bar span {
+            display: block;
+            height: 100%;
+            border-radius: 5px;
+            position: absolute;
+        }
+        .content .left .projects .project .progress-bar span.orange {
+            width: 60%;
+            background-color: #ff9f43;
+        }
+        .content .left .projects .project .progress-bar span.blue {
+            width: 50%;
+            background-color: #5a9ef8;
+        }
+        .content .left .projects .project .progress-bar span.green {
+            width: 60%;
+            background-color: #28c76f;
+        }
+        .content .left .projects .project .progress-bar span.red {
+            width: 20%;
+            background-color: #ea5455;
+        }
+        .content .left .projects .project .progress-bar span.teal {
+            width: 80%;
+            background-color: #00cfe8;
+        }
+        .content .left .projects .project .progress-bar span.purple {
+            width: 40%;
+            background-color: #7367f0;
+        }
+        .content .left .projects .project .progress-text {
+            font-size: 12px;
+            color: #666;
+        }
+        .content .left .projects .project .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .content .left .projects .project .footer img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .content .left .projects .project .footer .team {
+            display: flex;
+            align-items: center;
+        }
+        .content .left .projects .project .footer .date {
+            font-size: 12px;
+            color: #999;
+        }
+  </style>
+  <script>
+   function changeMessage(name, message, date) {
+            document.getElementById('message-name').innerText = name;
+            document.getElementById('message-text').innerText = message;
+            document.getElementById('message-date').innerText = date;
+        }
+  </script>
+ </head>
+ <body>
+  <div class="container">
+   <div class="sidebar">
+    <i class="fas fa-home">
+    </i>
+    <i class="fas fa-clock">
+    </i>
+    <i class="fas fa-clipboard">
+    </i>
+    <i class="fas fa-cog">
+    </i>
+   </div>
+   <div class="main-content">
+    <div class="header">
+     <div class="search-bar">
+      <i class="fas fa-search">
+      </i>
+      <input placeholder="Search" type="text"/>
+     </div>
+     <div class="icons">
+      <i class="fas fa-moon">
+      </i>
+      <i class="fas fa-bell">
+      </i>
+      <div class="admin">
+       ADMIN
+      </div>
+     </div>
+    </div>
+    <div class="content">
+     <div class="left">
+      <div class="stats">
+       <div>
+        <h3>
+         45
+        </h3>
+        <p>
+         In Progress
+        </p>
+       </div>
+       <div>
+        <h3>
+         24
+        </h3>
+        <p>
+         Upcoming
+        </p>
+       </div>
+       <div>
+        <h3>
+         62
+        </h3>
+        <p>
+         Total Projects
+        </p>
+       </div>
+      </div>
+      <div class="projects">
+       <div class="project" style="background-color: #ffe8d6;">
+        <h3>
+         Web Designing
+        </h3>
+        <p>
+         Prototyping
+        </p>
+        <div class="progress">
+         <div class="progress-bar">
+          <span class="orange">
+          </span>
+         </div>
+         <div class="progress-text">
+          60%
+         </div>
+        </div>
+        <div class="footer">
+         <div class="team">
+          <img alt="Team member" height="20" src="https://storage.googleapis.com/a1aa/image/2EQi7Thl1C5aK13akbVH6Ks9OtOZwGXohA5hkYr0VN8N4k6E.jpg" width="20"/>
+          <i class="fas fa-plus">
+          </i>
+         </div>
+         <div class="date">
+          2 Days Left
+         </div>
+        </div>
+       </div>
+       <div class="project" style="background-color: #e8e8ff;">
+        <h3>
+         Testing
+        </h3>
+        <p>
+         Prototyping
+        </p>
+        <div class="progress">
+         <div class="progress-bar">
+          <span class="blue">
+          </span>
+         </div>
+         <div class="progress-text">
+          50%
+         </div>
+        </div>
+        <div class="footer">
+         <div class="team">
+          <img alt="Team member" height="20" src="https://storage.googleapis.com/a1aa/image/2EQi7Thl1C5aK13akbVH6Ks9OtOZwGXohA5hkYr0VN8N4k6E.jpg" width="20"/>
+          <i class="fas fa-plus">
+          </i>
+         </div>
+         <div class="date">
+          2 Days Left
+         </div>
+        </div>
+       </div>
+       <div class="project" style="background-color: #d6f8ff;">
+        <h3>
+         Svg Animations
+        </h3>
+        <p>
+         Prototyping
+        </p>
+        <div class="progress">
+         <div class="progress-bar">
+          <span class="teal">
+          </span>
+         </div>
+         <div class="progress-text">
+          80%
+         </div>
+        </div>
+        <div class="footer">
+         <div class="team">
+          <img alt="Team member" height="20" src="https://storage.googleapis.com/a1aa/image/2EQi7Thl1C5aK13akbVH6Ks9OtOZwGXohA5hkYr0VN8N4k6E.jpg" width="20"/>
+          <i class="fas fa-plus">
+          </i>
+         </div>
+         <div class="date">
+          2 Days Left
+         </div>
+        </div>
+       </div>
+       <div class="project" style="background-color: #ffd6e8;">
+        <h3>
+         UI Development
+        </h3>
+        <p>
+         Prototyping
+        </p>
+        <div class="progress">
+         <div class="progress-bar">
+          <span class="red">
+          </span>
+         </div>
+         <div class="progress-text">
+          20%
+         </div>
+        </div>
+        <div class="footer">
+         <div class="team">
+          <img alt="Team member" height="20" src="https://storage.googleapis.com/a1aa/image/2EQi7Thl1C5aK13akbVH6Ks9OtOZwGXohA5hkYr0VN8N4k6E.jpg" width="20"/>
+          <i class="fas fa-plus">
+          </i>
+         </div>
+         <div class="date">
+          2 Days Left
+         </div>
+        </div>
+       </div>
+       <div class="project" style="background-color: #d6ffe8;">
+        <h3>
+         Data Analysis
+        </h3>
+        <p>
+         Prototyping
+        </p>
+        <div class="progress">
+         <div class="progress-bar">
+          <span class="green">
+          </span>
+         </div>
+         <div class="progress-text">
+          60%
+         </div>
+        </div>
+        <div class="footer">
+         <div class="team">
+          <img alt="Team member" height="20" src="https://storage.googleapis.com/a1aa/image/2EQi7Thl1C5aK13akbVH6Ks9OtOZwGXohA5hkYr0VN8N4k6E.jpg" width="20"/>
+          <i class="fas fa-plus">
+          </i>
+         </div>
+         <div class="date">
+          2 Days Left
+         </div>
+        </div>
+       </div>
+       <div class="project" style="background-color: #e8d6ff;">
+        <h3>
+         Web Designing
+        </h3>
+        <p>
+         Prototyping
+        </p>
+        <div class="progress">
+         <div class="progress-bar">
+          <span class="purple">
+          </span>
+         </div>
+         <div class="progress-text">
+          40%
+         </div>
+        </div>
+        <div class="footer">
+         <div class="team">
+          <img alt="Team member" height="20" src="https://storage.googleapis.com/a1aa/image/2EQi7Thl1C5aK13akbVH6Ks9OtOZwGXohA5hkYr0VN8N4k6E.jpg" width="20"/>
+          <i class="fas fa-plus">
+          </i>
+         </div>
+         <div class="date">
+          2 Days Left
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="right">
+      <h2>
+       Pesan Klien
+      </h2>
+      <div class="message" onclick="changeMessage('Stephanie', 'Saya sudah menerima tugas pertama Anda. Itu cukup bagus. Kita bisa melanjutkan dengan tugas berikutnya.', '12 Desember')">
+       <img alt="Gambar klien" height="40" src="https://storage.googleapis.com/a1aa/image/Wp0fQ0G8JS0baqoUIHzkLL5jfzwWivQzshj5bWCEoTL2gTqTA.jpg" width="40"/>
+       <div class="text">
+        <h3>
+         Stephanie
+        </h3>
+        <p>
+         Saya sudah menerima tugas pertama Anda. Itu cukup bagus. Kita bisa melanjutkan dengan tugas berikutnya.
+        </p>
+       </div>
+       <div class="date">
+        12 Desember
+       </div>
+      </div>
+      <div class="message" onclick="changeMessage('Mark', 'Hei, bisa beri tahu saya tentang kemajuan proyek? Saya menunggu tanggapan Anda.', '12 Desember')">
+       <img alt="Gambar klien" height="40" src="https://storage.googleapis.com/a1aa/image/Wp0fQ0G8JS0baqoUIHzkLL5jfzwWivQzshj5bWCEoTL2gTqTA.jpg" width="40"/>
+       <div class="text">
+        <h3>
+         Mark
+        </h3>
+        <p>
+         Hei, bisa beri tahu saya tentang kemajuan proyek? Saya menunggu tanggapan Anda.
+        </p>
+       </div>
+       <div class="date">
+        12 Desember
+       </div>
+      </div>
+      <div class="message" onclick="changeMessage('David', 'Luar biasa! Saya suka itu. Kita bisa menjadwalkan pertemuan untuk yang berikutnya.', '12 Desember')">
+       <img alt="Gambar klien" height="40" src="https://storage.googleapis.com/a1aa/image/Wp0fQ0G8JS0baqoUIHzkLL5jfzwWivQzshj5bWCEoTL2gTqTA.jpg" width="40"/>
+       <div class="text">
+        <h3>
+         David
+        </h3>
+        <p>
+         Luar biasa! Saya suka itu. Kita bisa menjadwalkan pertemuan untuk yang berikutnya.
+        </p>
+       </div>
+       <div class="date">
+        12 Desember
+       </div>
+      </div>
+      <div class="message" onclick="changeMessage('Jessica', 'Saya sangat terkesan! Tidak sabar untuk melihat hasil akhirnya.', '11 Desember')">
+       <img alt="Gambar klien" height="40" src="https://storage.googleapis.com/a1aa/image/Wp0fQ0G8JS0baqoUIHzkLL5jfzwWivQzshj5bWCEoTL2gTqTA.jpg" width="40"/>
+       <div class="text">
+        <h3>
+         Jessica
+        </h3>
+        <p>
+         Saya sangat terkesan! Tidak sabar untuk melihat

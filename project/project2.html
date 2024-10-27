@@ -1,0 +1,103 @@
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('alfadrymallato.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .login-container h2 {
+            background: white;
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 10px;
+            margin-top: -40px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px 40px 10px 10px;
+            border: 2px solid white;
+            border-radius: 25px;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+        }
+        .input-group i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .options input {
+            margin-right: 5px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .register-link {
+            color: white;
+            font-size: 14px;
+            margin-top: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <div class="input-group">
+            <input type="text" placeholder="Username">
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="input-group">
+            <input type="password" placeholder="Password">
+            <i class="fas fa-lock"></i>
+        </div>
+        <div class="options">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="#" style="color: white;">Forgot password?</a>
+        </div>
+        <button class="login-btn">Login</button>
+        <a href="#" class="register-link">Don't have an account? Register</a>
+    </div>
+</body>
+</html>
